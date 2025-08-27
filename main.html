@@ -16,6 +16,19 @@
 		Constant: <input style="width: 20%;" id="const"/> Bad periods: <input style="width: 35%;" id="periods"/> Bad values: <input style="width: 35%;" id="values"/> <button onclick="speculate(document.getElementById('const').value, document.getElementById('periods').value, document.getElementById('values').value);">Speculate</button>
 	</body>
 	<script>
+		function baseconv(val,base,mult) {
+			var number = val;
+			var list = [val];
+			var mult = mult ? mult : 1n;
+			while(list[list.length - 1] != 0n) {
+				list.push(list[list.length - 1] / BigInt(base));
+				list[list.length - 2] = list[list.length - 2] % BigInt(base);
+			}
+			for(let term = 0; term < list.length; term++) {
+				list[term] *= mult ** BigInt(term);
+			}
+			return list;
+		}
 		function mod_pow(b,p,m) {
 		    var c = 1n;
 		    var l = baseconv(p,2n).reverse();
