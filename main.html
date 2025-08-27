@@ -65,7 +65,7 @@
 			var render = [];
 			var n = 0n;
 			var a = 2n;
-			var k = c;
+			var k = BigInt(c);
 			setInterval(function() {
 			    n += 1n;
 			    while(mod_pow(10n, k * a * n, k * a * n + 1n) != 1n) {
