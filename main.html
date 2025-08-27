@@ -62,12 +62,16 @@
 		    }
 		    return iter;
 		}
-		function twos(x) {
+		function twos(h) {
 			var two = 0;
+			var x = h - 1n;
 		    while(x % 2n == 0n) {
-		        x /= 2n
-				two++;
+		        x /= 2n;
 		    }
+			while(mod_pow(10n, x, h) != 1n) {
+				x *= 2n;
+				two++;
+			}
 		    return two;
 		}
 		function divs(x) {
@@ -93,7 +97,7 @@
 			        n++;
 			    }
 			    if(mod_pow(10n, k * a * n, k * a * n + 1n) == 1n && !v.includes(k * a * n + 1n)) {
-			        document.body.innerHTML += (a * n + 1n) + " → " + (a * k * n + 1n) + " " + (twos(n) + 1) + "<br/>";
+			        document.body.innerHTML += (a * n + 1n) + " → " + (a * k * n + 1n) + " " + twos(x) + "<br/>";
 			    }
 			},1000)
 		}
