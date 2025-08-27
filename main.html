@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>
+			Modular arithmetic speculator
+		</title>
+		<meta charset="utf-8">
+		<style>
+			body, input, button {
+				font-size: 14pt;
+				font-family: 'Segoe UI';
+			}
+		</style>
+	</head>
+	<body>
+		Constant: <input style="width: 20%;" id="const"/> Bad periods: <input style="width: 35%;" id="periods"/> Bad values: <input style="width: 35%;" id="values"/> <button onclick="speculate(document.getElementById('constant'), document.getElementById('periods'), document.getElementById('values'));">Speculate</button>
+	</body>
+	<script>
+		function period(x) {
+		    while(x % 2n == 0n) {
+		        x /= 2n;
+		    }
+		    while(x % 5n == 0n) {
+		        x /= 5n;
+		    }
+		    if(x == 1n) {
+		        return 0n;
+		    }
+		    var mod = 1n;
+		    var iter = 0n;
+		    while(iter == 0n || mod != 1n) {
+		        iter++;
+		        mod *= 10n;
+		        mod %= x;
+		    }
+		    return iter;
+		}
+		function divs(x) {
+		    var d = 5n;
+		    var dive = 0;
+		    while(d < x) {
+		        d += 2n;
+		        if(x % d == 0n && 2n ** (d - 1n) % d == 1n) {
+		            dive++;
+		        }
+		    }
+		    return dive;
+		}
+		function speculate(c, p, v) {
+			document.body.innerHTML = "";
+			var render = [];
+			var n = 0n;
+			var a = 2n;
+			var k = c;
+			setInterval(function() {
+			    n += 1n;
+			    while(mod_pow(10n, k * a * n, k * a * n + 1n) != 1n) {
+			        n++;
+			    }
+			    if(mod_pow(10n, k * a, k * a * n + 1n) == 1n && !v.includes(k * a * n + 1n)) {
+			        document.body.innerHTML += (a * n + 1n) + " → " + (a * k * n + 1n) + "<br/>";
+			    }
+			},0)
+		}
+	</script>
+</html>
