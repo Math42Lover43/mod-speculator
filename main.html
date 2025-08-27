@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-		Constant: <input style="width: 20%;" id="const"/> Bad periods: <input style="width: 35%;" id="periods"/> Bad values: <input style="width: 35%;" id="values"/> <button onclick="speculate(document.getElementById('constant'), document.getElementById('periods'), document.getElementById('values'));">Speculate</button>
+		Constant: <input style="width: 20%;" id="const"/> Bad periods: <input style="width: 35%;" id="periods"/> Bad values: <input style="width: 35%;" id="values"/> <button onclick="speculate(document.getElementById('const').value, document.getElementById('periods').value, document.getElementById('values').value);">Speculate</button>
 	</body>
 	<script>
 		function mod_pow(b,p,m) {
