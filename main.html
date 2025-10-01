@@ -94,14 +94,10 @@
 			var k = BigInt(c1 * c2);
 			setInterval(function() {
 			    n += 1n;
-			    while(mod_pow(10n, k * a * n, k * a * n + 1n) != 1n) {
+			    while(mod_pow(2n, k * a * n, k * a * n + 1n) != 1n) {
 			        n++;
 			    }
-				if(mod_pow(10n, k * a * n, k * a * n + 1n) == 1n) {
-					console.log(k * a * n + 1n);
-					console.log((" " + (t ? t : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20") + " ").includes(twos(a * k * n + 1n)));
-				}
-			    if(mod_pow(10n, k * a * n, k * a * n + 1n) == 1n && !v.includes(k * a * n + 1n) && (" " + (t ? t : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20") + " ").includes(twos(a * k * n + 1n))) {
+			    if(mod_pow(2n, k * a * n, k * a * n + 1n) == 1n && !v.includes(k * a * n + 1n) && (" " + (t ? t : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20") + " ").includes(twos(a * k * n + 1n))) {
 			        document.body.innerHTML += (a * c1 * n + 1n) + " → " + (a * k * n + 1n) + " " + twos(a * k * n + 1n) + " p " + period(n) + " c " + divs(n) + "<br/>";
 			    }
 			},250)
