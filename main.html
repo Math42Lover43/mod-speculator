@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-		Base: <input style="width: 15%;" id="a"/> Multiplier: <input style="width: 15%;" id="b"/> Bad periods: <input style="width: 30%;" id="periods"/> Bad values: <input style="width: 30%;" id="values"/> Two reqs: <input style="width: 10%;" id="tworeq"/> <button onclick="speculate(document.getElementById('a').value, document.getElementById('b').value, document.getElementById('periods').value, document.getElementById('values').value, document.getElementById('tworeq').value);">Speculate</button>
+		Base: <input style="width: 15%;" id="a"/> Multiplier: <input style="width: 15%;" id="b"/> Start: <input style="width: 15%;" id="start"/> Bad periods: <input style="width: 30%;" id="periods"/> Bad values: <input style="width: 30%;" id="values"/> Two reqs: <input style="width: 10%;" id="tworeq"/> <button onclick="speculate(document.getElementById('a').value, document.getElementById('b').value, document.getElementById('periods').value, document.getElementById('values').value, document.getElementById('tworeq').value, document.getElementById('start').value);">Speculate</button>
 	</body>
 	<script>
 		function baseconv(val,base,mult) {
@@ -119,10 +119,10 @@
 			}
 			return list;
 		}
-		function speculate(c1, c2, p, v, t) {
+		function speculate(c1, c2, p, v, t, s) {
 			document.body.innerHTML = "";
 			var render = [];
-			var n = 0n;
+			var n = s ? s : 0n;
 			[c1, c2] = [BigInt(c1), BigInt(c2)];
 			var k = BigInt(c1 * c2);
 			setInterval(function() {
