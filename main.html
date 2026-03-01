@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-		Base: <input style="width: 15%;" id="a"/> Multiplier: <input style="width: 15%;" id="b"/> Start: <input style="width: 15%;" id="start"/> Bad periods: <input style="width: 30%;" id="periods"/> Bad values: <input style="width: 30%;" id="values"/> Two reqs: <input style="width: 10%;" id="tworeq"/> Divisor min: <input style="width: 10%;" id="divmin"/> <input type="checkbox" id="prime"/> Primes only <button onclick="speculate(document.getElementById('a').value, document.getElementById('b').value, document.getElementById('periods').value, document.getElementById('values').value, document.getElementById('tworeq').value, document.getElementById('start').value, document.getElementById('prime').checked, document.getElementById('start').divmin.value ? document.getElementById('start').value : 0);">Speculate</button>
+		Base: <input style="width: 15%;" id="a"/> Multiplier: <input style="width: 15%;" id="b"/> Start: <input style="width: 15%;" id="start"/> Bad periods: <input style="width: 30%;" id="periods"/> Bad values: <input style="width: 30%;" id="values"/> Two reqs: <input style="width: 10%;" id="tworeq"/> Divisor min: <input style="width: 10%;" id="divmin"/> <input type="checkbox" id="prime"/> Primes only <button onclick="speculate(document.getElementById('a').value, document.getElementById('b').value, document.getElementById('periods').value, document.getElementById('values').value, document.getElementById('tworeq').value, document.getElementById('start').value, document.getElementById('prime').checked, document.getElementById('divmin').value ? document.getElementById('divmin').value : 0);">Speculate</button>
 	</body>
 	<script>
 		function baseconv(val,base,mult) {
