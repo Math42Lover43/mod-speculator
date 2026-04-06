@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-		Base: <input style="width: 15%;" id="a"/> Multiplier: <input style="width: 15%;" id="b"/> Start: <input style="width: 15%;" id="start"/> Bad periods: <input style="width: 30%;" id="periods"/> Bad values: <input style="width: 30%;" id="values"/> Two reqs: <input style="width: 10%;" id="tworeq"/> Divisor min: <input style="width: 10%;" id="divmin"/> <input type="checkbox" id="prime"/> Primes only <button onclick="speculate(document.getElementById('a').value, document.getElementById('b').value, document.getElementById('periods').value, document.getElementById('values').value, document.getElementById('tworeq').value, document.getElementById('start').value, document.getElementById('prime').checked, document.getElementById('divmin').value ? document.getElementById('divmin').value : 0);">Speculate</button>
+		Base: <input style="width: 15%;" id="a"/> Multiplier: <input style="width: 15%;" id="b"/> Start: <input style="width: 15%;" id="start"/> Two reqs: <input style="width: 10%;" id="tworeq"/> Divisor min: <input style="width: 10%;" id="divmin"/> <input type="checkbox" id="prime"/> Primes only <button onclick="speculate(document.getElementById('a').value, document.getElementById('b').value, document.getElementById('tworeq').value, document.getElementById('start').value, document.getElementById('prime').checked, document.getElementById('divmin').value ? document.getElementById('divmin').value : 0);">Speculate</button>
 	</body>
 	<script>
 		function baseconv(val,base,mult) {
@@ -119,7 +119,7 @@
 			}
 			return list;
 		}
-		function speculate(c1, c2, p, v, t, s, pri, m) {
+		function speculate(c1, c2, t, s, pri, m) {
 			document.body.innerHTML = `N: <span id="nval"></span>`;
 			var render = [];
 			var n = s ? BigInt(s) : 0n;
@@ -130,7 +130,7 @@
 			    while(mod_pow(2n, k * n, k * n + 1n) != 1n) {
 			        n++;
 			    }
-			    if(mod_pow(2n, k * n, k * n + 1n) == 1n && !v.includes(k * n + 1n) && (" " + (t ? t : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20") + " ").includes(twos(k * n + 1n)) && !(pri && (quickfact(c1 * n + 1n).length > 2.5)) && divs(n) >= m) {
+			    if(mod_pow(2n, k * n, k * n + 1n) == 1n && (" " + (t ? t : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20") + " ").includes(twos(k * n + 1n)) && !(pri && mod_pow(2n, c1 * n, c1 * n + 1n) != 1n) && divs(n) >= m) {
 			        document.body.innerHTML += (c1 * n + 1n) + "&nbsp;<sub>" + quickfact(c1 * n + 1n).length + "</sub> → " + (k * n + 1n) + " " + twos(k * n + 1n) + " p " + period(n) + " r " + (Number(period(n)) * 2 / 2 ** ntwos(k * n + 1n)) + " c " + divs(n) + "<br/>";
 			    }
 			},250)
