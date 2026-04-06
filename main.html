@@ -67,11 +67,8 @@
 			var x = h - 1n;
 		    while(x % 2n == 0n) {
 		        x /= 2n;
-		    }
-			while(mod_pow(10n, x, h) != 1n) {
-				x *= 2n;
-				two++;
-			}
+			two++;
+		}
 		    return two;
 		}
 		function ntwos(h) {
@@ -120,20 +117,22 @@
 			return list;
 		}
 		function speculate(c1, c2, t, s, pri, m) {
-			document.body.innerHTML = `N: <span id="nval"></span>`;
+			document.body.innerHTML = `N: <span id="nval"></span><hr/>`;
 			var render = [];
 			var n = s ? BigInt(s) : 0n;
 			[c1, c2] = [BigInt(c1), BigInt(c2)];
 			var k = BigInt(c1 * c2);
 			var dive;
+			var dos;
 			setInterval(function() {
 			    n += 1n;
 			    while(mod_pow(2n, k * n, k * n + 1n) != 1n) {
 			        n++;
 			    }
 				dive = divs(n);
-			    if(mod_pow(2n, k * n, k * n + 1n) == 1n && (" " + (t ? t : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20") + " ").includes(twos(k * n + 1n)) && !(pri && mod_pow(2n, c1 * n, c1 * n + 1n) != 1n) && dive >= m) {
-			        document.body.innerHTML += (c1 * n + 1n) + "&nbsp;<sub>" + quickfact(c1 * n + 1n).length + "</sub> → " + (k * n + 1n) + " " + twos(k * n + 1n) + " p " + period(n) + " r " + (Number(period(n)) * 2 / 2 ** twos(k * n + 1n)) + " c " + dive + "<br/>";
+				dos = twos(k * n + 1n);
+			    if(mod_pow(2n, k * n, k * n + 1n) == 1n && (" " + (t ? t : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20") + " ").includes(dos) && !(pri && mod_pow(2n, c1 * n, c1 * n + 1n) != 1n) && dive >= m) {
+			        document.body.innerHTML += (c1 * n + 1n) + "&nbsp;<sub>" + quickfact(c1 * n + 1n).length + "</sub> → " + (k * n + 1n) + " " + dos + " p " + period(n) + " r " + (Number(period(n)) * 2 / 2 ** dos) + " c " + dive + "<br/>";
 			    }
 			},250)
 			setInterval(function() {
