@@ -63,17 +63,24 @@
 		    return iter;
 		}
 		function twos(h) {
-			var two = 0;
-			var x = h - 1n;
+		    var two = -1;
+		    var x = h - 1n;
 		    while(x % 2n == 0n) {
 		        x /= 2n;
-			two++;
-		}
+		    }
+		    while(mod_pow(10n, x, h) != 1n) {
+		        x *= 2n;
+		        two++;
+		    }
+		    two++;
 		    return two;
 		}
 		function ntwos(h) {
 			var two = 0;
 			var x = h - 1n;
+			if(x == 0n) {
+				return -1;
+			}
 		    while(x % 2n == 0n) {
 		        x /= 2n;
 				two++;
