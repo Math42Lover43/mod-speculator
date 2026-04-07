@@ -138,9 +138,8 @@
 			    }
 				dive = divs(n);
 				dos = twos(k * n + 1n);
-				console.log(dos, pri, mod_pow(2n, c1 * n, c1 * n + 1n), dive);
 			    if((" " + (t ? t : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20") + " ").includes(dos) && !(pri && mod_pow(2n, c1 * n, c1 * n + 1n) != 1n) && dive >= m) {
-			        document.body.innerHTML += (c1 * n + 1n) + "&nbsp;<sub>" + quickfact(c1 * n + 1n).length + "</sub> → " + (k * n + 1n) + " " + dos + " p " + period(n) + " r " + (Number(period(n)) * 2 / 2 ** dos) + " c " + dive + "<br/>";
+			        document.body.innerHTML += (c1 * n + 1n) + "&nbsp;<sub>" + quickfact(c1 * n + 1n).length + "</sub> → " + (k * n + 1n) + " " + dos + " p " + period(n) + " c " + dive + "<br/>";
 			    }
 			},250)
 			setInterval(function() {
