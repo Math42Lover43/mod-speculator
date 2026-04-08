@@ -87,16 +87,53 @@
 		    }
 		    return two;
 		}
-		function divs(x) {
+		function divs(x, target) {
 		    var d = 5n;
-		    var dive = 0;
-		    while(d < x) {
+		    var dive = 1;
+		    while(d < sqrt(x)) {
 		        d += 2n;
-		        if(x % d == 0n && mod_pow(2n, d - 1n, d) <= 1n && mod_pow(3n, d - 1n, d) <= 1n && mod_pow(5n, d - 1n, d) <= 1n && mod_pow(7n, d - 1n, d) <= 1n && mod_pow(11n, d - 1n, d) <= 1n && mod_pow(13n, d - 1n, d) <= 1n && mod_pow(17n, d - 1n, d) <= 1n && mod_pow(19n, d - 1n, d) <= 1n) {
+				while(mod_pow(2n, d - 1n, d) > 1n) {
+					d++;
+				}
+		        if(x % d == 0n) {
 		            dive++;
 		        }
+				if(dive >= target) {
+					return true;
+				}
 		    }
-		    return dive;
+		    return false;
+		}
+		function lb(x) {
+		    var test = 1n;
+		    var base = 0n;
+		    var ret = 0n;
+		    while(2n ** (2n ** base) < x) {
+		        base++;
+		    }
+		    base -= 1n;
+		    ret = 2n ** base;
+		    while(base > 0n) {
+		        base -= 1n;
+		        if(2n ** (ret + 2n ** base) <= x) {
+		            ret += 2n ** base;
+		        }
+		    }
+		    return ret;
+		}
+		function sqrt(x) {
+		    var num = 0n;
+		    var test = lb(x) / 2n;
+		    num += 2n ** test;
+		    while(test > 0n) {
+		        while((num + 2n ** test) ** 2n > x && test > 0n) {
+		            test--;
+		        }
+		        if((num + 2n ** test) ** 2n <= x) {
+		            num += 2n ** test;
+		        }
+		    }
+		    return num;
 		}
 		function quickfact(val, rip, rip_pow) {
 			var list = [];
@@ -125,6 +162,7 @@
 		}
 		function speculate(c1, c2, t, s, pri, m) {
 			document.body.innerHTML = `N: <span id="nval"></span><hr/>`;
+			m = m ? m : 0;
 			var render = [];
 			var n = s ? BigInt(s) : 0n;
 			[c1, c2] = [BigInt(c1), BigInt(c2)];
@@ -136,10 +174,10 @@
 			    while(mod_pow(2n, k * n, k * n + 1n) != 1n) {
 			        n++;
 			    }
-				dive = divs(n);
+				dive = divs(n, m);
 				dos = twos(k * n + 1n);
-			    if((" " + (t ? t : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20") + " ").includes(dos) && !(pri && mod_pow(2n, c1 * n, c1 * n + 1n) != 1n) && dive >= m) {
-			        document.body.innerHTML += (c1 * n + 1n) + "&nbsp;<sub>" + Number(mod_pow(2n, c1 * n, c1 * n + 1n) == 1n) + "</sub> → " + (k * n + 1n) + " " + dos + " p " + period(n) + " c " + dive + "<br/>";
+			    if((" " + (t ? t : "0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20") + " ").includes(dos) && !(pri && mod_pow(2n, c1 * n, c1 * n + 1n) != 1n) && dive) {
+			        document.body.innerHTML += (c1 * n + 1n) + "&nbsp;<sub>" + Number(mod_pow(2n, c1 * n, c1 * n + 1n) == 1n) + "</sub> → " + (k * n + 1n) + " " + dos + " p " + period(n) + "<br/>";
 			    }
 			},250)
 			setInterval(function() {
