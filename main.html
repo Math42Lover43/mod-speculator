@@ -90,6 +90,15 @@
 		function divs(x, target) {
 		    var d = 5n;
 		    var dive = 1;
+			while(x % 2n == 0n) {
+				x /= 2n;
+			}
+			while(x % 3n == 0n) {
+				x /= 3n;
+			}
+			while(x % 5n == 0n) {
+				x /= 5n;
+			}
 		    while(d < sqrt(x)) {
 		        d += 2n;
 				while(mod_pow(2n, d - 1n, d) > 1n) {
@@ -98,6 +107,9 @@
 		        if(x % d == 0n) {
 		            dive++;
 		        }
+				while(x % d == 0n) {
+					x /= d;
+				}
 				if(dive >= target) {
 					return true;
 				}
